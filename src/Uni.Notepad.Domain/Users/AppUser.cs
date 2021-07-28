@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Uni.Notepad.Cities;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.Users;
 
@@ -26,6 +28,8 @@ namespace Uni.Notepad.Users
 
         public virtual string UserName { get; private set; }
 
+        public virtual string Password { get; set; }
+
         public virtual string Name { get; private set; }
 
         public virtual string Surname { get; private set; }
@@ -38,6 +42,12 @@ namespace Uni.Notepad.Users
 
         public virtual bool PhoneNumberConfirmed { get; private set; }
 
+        
+        public virtual Guid CityId { get; set; }
+
+        [ForeignKey("CityId")]
+        public City City { get; set; }
+        
         #endregion
 
         /* Add your own properties here. Example:
@@ -57,7 +67,6 @@ namespace Uni.Notepad.Users
 
         private AppUser()
         {
-            
         }
     }
 }

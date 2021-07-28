@@ -1,4 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Uni.Notepad.Cities;
+using Uni.Notepad.NoteCategories;
+using Uni.Notepad.Notes;
 using Uni.Notepad.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -21,6 +24,12 @@ namespace Uni.Notepad.EntityFrameworkCore
     public class NotepadDbContext : AbpDbContext<NotepadDbContext>
     {
         public DbSet<AppUser> Users { get; set; }
+        
+        public DbSet<City> Cities { get; set; }
+
+        public DbSet<NoteCategory> NoteCategories { get; set; }
+
+        public DbSet<Note> Notes { get; set; }
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside NotepadDbContextModelCreatingExtensions.ConfigureNotepad
@@ -40,7 +49,7 @@ namespace Uni.Notepad.EntityFrameworkCore
 
             builder.Entity<AppUser>(b =>
             {
-                b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users"); //Sharing the same table "AbpUsers" with the IdentityUser
+                b.ToTable("Users"); //Sharing the same table "AbpUsers" with the IdentityUser
                 
                 b.ConfigureByConvention();
                 b.ConfigureAbpUser();
