@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Uni.Notepad.Notes;
-using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Domain.Entities;
 
 namespace Uni.Notepad.NoteCategories
 {
-    public class NoteCategory: AuditedAggregateRoot<Guid>
+    [Table("NoteCategories", Schema = "dbo")]
+    public class NoteCategory: Entity<Guid>
     {
         #region Properties
 
@@ -15,6 +17,9 @@ namespace Uni.Notepad.NoteCategories
         
         [MaxLength(NoteCategoryLength.MaxDescription)]
         public string NoteCategoryDescription { get; set; }
+        
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime ModifiedDate { get; set; } = DateTime.Now;
         
         #endregion
 

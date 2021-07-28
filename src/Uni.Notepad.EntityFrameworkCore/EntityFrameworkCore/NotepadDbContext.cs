@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Uni.Notepad.Cities;
+using Uni.Notepad.EntityFrameworkCore.Seeders;
 using Uni.Notepad.NoteCategories;
 using Uni.Notepad.Notes;
 using Uni.Notepad.Users;
@@ -49,7 +50,11 @@ namespace Uni.Notepad.EntityFrameworkCore
 
             builder.Entity<AppUser>(b =>
             {
-                b.ToTable("Users"); //Sharing the same table "AbpUsers" with the IdentityUser
+                b.Property(x => x.Password);
+                b.Property(x => x.CityId);
+                b.Property(x => x.CreatedDate);
+                b.Property(x => x.ModifiedDate);
+                b.ToTable("AbpUsers"); //Sharing the same table "AbpUsers" with the IdentityUser
                 
                 b.ConfigureByConvention();
                 b.ConfigureAbpUser();
@@ -58,7 +63,7 @@ namespace Uni.Notepad.EntityFrameworkCore
                  * Also see the NotepadEfCoreEntityExtensionMappings class
                  */
             });
-
+            
             /* Configure your own tables/entities inside the ConfigureNotepad method */
 
             builder.ConfigureNotepad();

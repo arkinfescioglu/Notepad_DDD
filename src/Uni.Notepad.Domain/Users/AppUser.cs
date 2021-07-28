@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using AutoMapper.Configuration.Annotations;
 using Uni.Notepad.Cities;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.Users;
@@ -28,7 +29,8 @@ namespace Uni.Notepad.Users
 
         public virtual string UserName { get; private set; }
 
-        public virtual string Password { get; set; }
+        [Ignore]
+        public string Password { get; set; }
 
         public virtual string Name { get; private set; }
 
@@ -42,8 +44,13 @@ namespace Uni.Notepad.Users
 
         public virtual bool PhoneNumberConfirmed { get; private set; }
 
+        [Ignore]
+        public DateTime ? CreatedDate { get; set; } = DateTime.Now;
+        [Ignore]
+        public DateTime ? ModifiedDate { get; set; } = DateTime.Now;
         
-        public virtual Guid CityId { get; set; }
+        [Ignore]
+        public Guid ? CityId { get; set; }
 
         [ForeignKey("CityId")]
         public City City { get; set; }

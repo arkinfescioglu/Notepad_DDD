@@ -1,4 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Uni.Notepad.Cities;
+using Uni.Notepad.EntityFrameworkCore.Seeders;
+using Uni.Notepad.NoteCategories;
+using Uni.Notepad.Notes;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -39,7 +43,7 @@ namespace Uni.Notepad.EntityFrameworkCore
             builder.ConfigureIdentityServer();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
-
+            
             /* Configure your own tables/entities inside the ConfigureNotepad method */
 
             builder.ConfigureNotepad();

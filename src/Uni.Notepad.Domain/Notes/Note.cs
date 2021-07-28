@@ -3,11 +3,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Uni.Notepad.NoteCategories;
 using Uni.Notepad.Users;
-using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Domain.Entities;
+
 
 namespace Uni.Notepad.Notes
 {
-    public class Note: AuditedAggregateRoot<Guid>
+    [Table("Notes", Schema = "dbo")]
+    public class Note: Entity<Guid>
     {
         #region Properties
 
@@ -20,6 +22,9 @@ namespace Uni.Notepad.Notes
         
         public Guid CategoryId { get; set; }
 
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime ModifiedDate { get; set; } = DateTime.Now;
+        
         #endregion
 
         #region Relations
